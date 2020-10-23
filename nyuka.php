@@ -14,7 +14,7 @@
  * ①session_status()の結果が「PHP_SESSION_NONE」と一致するか判定する。
  * 一致した場合はif文の中に入る。
  */
-if(session_status() === PHP_SESSION_NONE) session_start();
+if(session_status() === PHP_SESSION_NONE){session_start();} 
 //③SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
 // if (/* ③の処理を書く */){
 // 	//④SESSIONの「error2」に「ログインしてください」と設定する。
@@ -120,9 +120,9 @@ function getId($id,$con){
 
 					?>
 					
-					<input type="hidden" value="<?php echo $books["id"]?>" name="books[]">
+					<input type="hidden" value="<?php echo $book["id"]?>" name="books[]">
 					<tr>
-						<td><?php echo		 $book['id'] /* ⑱ ⑯の戻り値からidを取り出し、表示する */;?></td>
+						<td><?php echo		 $book['id'] /* ⑱ ⑯の戻り値 からidを取り出し、表示する */;?></td>
 						<td><?php echo		$book['title']/* ⑲ ⑯の戻り値からtitleを取り出し、表示する */;?></td>
 						<td><?php echo		$book['author']/* ⑳ ⑯の戻り値からauthorを取り出し、表示する */;?></td>
 						<td><?php echo		$book['salesDate']/* ㉑ ⑯の戻り値からsalesDateを取り出し、表示する */;?></td>

@@ -22,7 +22,7 @@ $db_name="zaiko2020_yse";
 $host="localhost";
 $user_name="zaiko2020_yse";
 $password="2020zaiko";
-$dsn="mysql:dbname={$db_name};host={$host}";
+$dsn="mysql:dbname={$db_name};host={$host};charset=utf8;";
 try{
 	$pdo=new PDO($dsn,$user_name,$password);
 }catch(PDOException $e){

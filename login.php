@@ -12,55 +12,64 @@
 	ログインしてください：ログインしていない状態で他のページに遷移した場合(ログイン画面に遷移し上記を表示)
 */
 //⑥セッションを開始する
-//session_start();
+session_start();
 
 //①名前とパスワードを入れる変数を初期化する
-$iputId="";
-$inputPassword="";
-
+	$name='';
+	$pass='';
+	$errmsg='';
 
 /*
  * ②ログインボタンが押されたかを判定する。
  * 押されていた場合はif文の中の処理を行う
  */
 
-if (isset($_POST["name"] )&& $_POST["pass"]) {
+if (isset($_POST["decision"] )&& $_POST["decision"]==1) {
+	
 	/*
 	 * ③名前とパスワードが両方とも入力されているかを判定する。
 	 * 入力されていた場合はif文の中の処理を行う。
 	 */
 	
 
-	if (isset($_POST['decistion'])/* ③の処理を書く */) {
+	if (!empty($_POST['name']) && !empty($_POST['pass'])/* ③の処理を書く */) {
 		//④名前とパスワードにPOSTで送られてきた名前とパスワードを設定する
-		$iputId = $_POST["name"];
-		$inputPassword = $_POST["pass"];
+		$name = $_POST['name'];
+		$pass = $_POST['pass'];
 	} else {
 		//⑤名前かパスワードが入力されていない場合は、「名前かパスワードが未入力です」という文言をメッセージを入れる変数に設定する
-		echo "名前かパスワードが未入力です";
+		$errmsg ='名前かパスワードが未入力です';
 	}
 }
 
 //⑦名前が入力されているか判定する。入力されていた場合はif文の中に入る
-// if ( $iputId !=null && $inputPassword !=null/* ⑦の処理を書く */) {
+ if ( $name/* ⑦の処理を書く */) {
 // 	//⑧名前に「yse」、パスワードに「2019」と設定されているか確認する。設定されていた場合はif文の中に入る
-// 	$id="yes";
-// 	$password=2019;
-// 	if ($id==$iputId && $password==$inputPassword/* ⑧の処理を書く */){
+ 	
+	if ($name == 'yse' && $pass == '2019'/* ⑧の処理を書く */){
 // 		//⑨SESSIONに名前を設定し、SESSIONの「login」フラグをtrueにする
-		
+		$_SESSION['login'] = true;
 // 		//⑩在庫一覧画面へ遷移する
+		header('Location:zaiko_ichiran.php');
+		exit;
 // 		//header(/* ⑩の遷移先を書く */);
-// 	}else{
-// 		//⑪名前もしくはパスワードが間違っていた場合は、「ユーザー名かパスワードが間違っています」という文言をメッセージを入れる変数に設定する
-// 	}
-// }
+ 	}else{
+			$errmsg ='ユーザー名かパスワードが間違っています';
+	//⑪名前もしくはパスワードが間違っていた場合は、「ユーザー名かパスワードが間違っています」という文言をメッセージを入れる変数に設定する
+	}
+
+ }
 
 //⑫SESSIONの「error2」に値が入っているか判定する。入っていた場合はif文の中に入る
-// if (/* ⑫の処理を書く */) {
+//$_SESSION["error2"] = "";
+ if (isset($_SESSION["error2"])/* ⑫の処理を書く */) {
+
 // 	//⑬SESSIONの「error2」の値をエラーメッセージを入れる変数に設定する。
+		
+		$errmsg = $_SESSION["error2"];
 // 	//⑭SESSIONの「error2」にnullを入れる。
-// }
+		$_SESSION["error2"] = null;
+ }
 
 ?>
 
@@ -77,10 +86,10 @@ if (isset($_POST["name"] )&& $_POST["pass"]) {
 		<h1>ログイン</h1>
 		<?php
 		//⑮エラーメッセージの変数に入っている値を表示する
-		//echo "<div id='error'>", /* ⑮の変数を書く */, "</div>";
+		echo "<div id='error'>",$errmsg /* ⑮の変数を書く */, "</div>";
 		
 		//⑯メッセージの変数に入っている値を表示する
-		//echo "<div id='msg'>", /* ⑯の変数を書く */, "</div>";
+		//echo "<div id='msg'>" /* ⑯の変数を書く */, "</div>";
 		?>
 		<form action="login.php" method="post" id="log">
 			<p>

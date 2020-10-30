@@ -11,7 +11,8 @@
 */
 
 //①セッションを開始する
-
+session_start();
+ session_regenerate_id(True);
 //②SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
 // if (/* ②の処理を書く */){
 // 	//③SESSIONの「error2」に「ログインしてください」と設定する。
@@ -56,9 +57,10 @@ $query=$pdo->query($sql)
 				 * ⑧SESSIONの「success」にメッセージが設定されているかを判定する。
 				 * 設定されていた場合はif文の中に入る。
 				 */ 
-				// if(/* ⑧の処理を書く */){
+				 if(isset($_SESSION['success'])/* ⑧の処理を書く */){
 				// 	//⑨SESSIONの「success」の中身を表示する。
-				// }
+					echo $_SESSION['success'];
+				 }
 				?>
 			</div>
 			

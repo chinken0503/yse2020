@@ -14,14 +14,16 @@
  * ①session_status()の結果が「PHP_SESSION_NONE」と一致するか判定する。
  * 一致した場合はif文の中に入る。
  */
-if(session_status() === PHP_SESSION_NONE){session_start();} 
+if(session_status() === PHP_SESSION_NONE){
+	session_start();
+} 
 //③SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
-//if ($_SESSION["error2"] == false){
+if ($_SESSION["error2"] == false){
 	//④SESSIONの「error2」に「ログインしてください」と設定する。
-	//$_SESSION["error2"]="ログインしてください";
+	$_SESSION["error2"]="ログインしてください";
 	//⑤ログイン画面へ遷移する。
-	//header('Location:login.php');
-//}
+	header('Location:login.php');
+}
 
 //⑥データベースへ接続し、接続情報を変数に保存する
 

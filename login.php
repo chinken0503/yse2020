@@ -48,7 +48,7 @@ if (isset($_POST["decision"] )&& $_POST["decision"]==1) {
  	
 	if ($name == 'yse' && $pass == '2019'/* ⑧の処理を書く */){
 // 		//⑨SESSIONに名前を設定し、SESSIONの「login」フラグをtrueにする
-		$_SESSION[''] = true;
+		$_SESSION['login'] = true;
 // 		//⑩在庫一覧画面へ遷移する
 		header('Location:zaiko_ichiran.php');
 		exit;
@@ -57,7 +57,6 @@ if (isset($_POST["decision"] )&& $_POST["decision"]==1) {
 			$errmsg ='ユーザー名かパスワードが間違っています';
 	//⑪名前もしくはパスワードが間違っていた場合は、「ユーザー名かパスワードが間違っています」という文言をメッセージを入れる変数に設定する
 	}
-
  }
 
 //⑫SESSIONの「error2」に値が入っているか判定する。入っていた場合はif文の中に入る

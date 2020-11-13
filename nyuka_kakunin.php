@@ -39,11 +39,11 @@ function updateByid($id,$con,$total){
 }
 
 //⑤SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
-if ($_SESSION["login"] == false){
-	//④SESSIONの「error2」に「ログインしてください」と設定する。
-	$_SESSION["error2"]="ログインしてください";
-	//⑤ログイン画面へ遷移する。
-	header('Location:login.php');
+if (!$_SESSION['login']/* ⑤の処理を書く */){
+	//⑥SESSIONの「error2」に「ログインしてください」と設定する。
+	$_SESSION['error2']="ログインしてください";
+	//⑦ログイン画面へ遷移する。
+	header('location:login.php');
 }
 
 //⑧データベースへ接続し、接続情報を変数に保存する
@@ -110,12 +110,10 @@ if(/* ㉓の処理を書く */isset($_POST['add'])&& $_POST['add']=='ok'){
 	//㉕POSTの「books」から値を取得し、変数に設定する。
 	foreach($_POST['books'] as $book_id/* ㉕の処理を書く */){
 		//㉖「getByid」関数を呼び出し、変数に戻り値を入れる。その際引数に㉕の処理で取得した値と⑧のDBの接続情報を渡す。
-		$book=getByid($book_id,$pdo);
-
+							$book=getByid($book_id,$pdo);
 		//㉗ ㉖で取得した書籍の情報の「stock」と、㉔の変数を元にPOSTの「stock」から値を取り出し、足した値を変数に保存する。
-		$stock=$_POST['stock'][$index];
-		$total_stock=$book['stock']+$stock;
-
+			$stock = $_POST['stock'][$index];
+		 	$total_stock=$book['stock']+$stock;
 		//㉘「updateByid」関数を呼び出す。その際に引数に㉕の処理で取得した値と⑧のDBの接続情報と㉗で計算した値を渡す。
 		//㉙ ㉔で宣言した変数をインクリメントで値を1増やす。
 		updateByid($book_id,$pdo,$total_stock);

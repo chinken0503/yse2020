@@ -39,7 +39,7 @@ function updateByid($id,$con,$total){
 }
 
 //⑤SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
-if ($_SESSION["error2"] == false){
+if ($_SESSION["login"] == false){
 	//④SESSIONの「error2」に「ログインしてください」と設定する。
 	$_SESSION["error2"]="ログインしてください";
 	//⑤ログイン画面へ遷移する。

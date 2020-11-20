@@ -35,8 +35,10 @@ try{
 
 //⑥データベースで使用する文字コードを「UTF8」にする 
 $sql="SELECT * FROM books ;";
+//$sql = "SELECT * FROM books WHERE is_delete = false;";
 $query=$pdo->query($sql)
 //⑦書籍テーブルから書籍情報を取得するSQLを実行する。また実行結果を変数に保存する
+
 
 ?>
 <!DOCTYPE html>

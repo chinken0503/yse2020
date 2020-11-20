@@ -25,6 +25,8 @@ session_start();
  */
 
 if (isset($_POST["decision"] )&& $_POST["decision"]==1) {
+	$name = $_POST['name'];
+	$pass = $_POST['pass'];
 	
 	/*
 	 * ③名前とパスワードが両方とも入力されているかを判定する。
@@ -43,7 +45,7 @@ if (isset($_POST["decision"] )&& $_POST["decision"]==1) {
 }
 
 //⑦名前が入力されているか判定する。入力されていた場合はif文の中に入る
- if ( $name/* ⑦の処理を書く */) {
+ if ( !empty($name) && !empty($pass)/* ⑦の処理を書く */) {
 // 	//⑧名前に「yse」、パスワードに「2019」と設定されているか確認する。設定されていた場合はif文の中に入る
  	
 	if ($name == 'yse' && $pass == '2019'/* ⑧の処理を書く */){
@@ -66,7 +68,7 @@ if (isset($_POST["decision"] )&& $_POST["decision"]==1) {
 
 // 	//⑬SESSIONの「error2」の値をエラーメッセージを入れる変数に設定する。
 		
-		$errmsg = $_SESSION["error2"];
+		 $_SESSION["error2"]="エラーメッセージ";
 // 	//⑭SESSIONの「error2」にnullを入れる。
 		$_SESSION["error2"] = null;
  }

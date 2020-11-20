@@ -14,10 +14,12 @@
 session_start();
  session_regenerate_id(True);
 //②SESSIONの「login」フラグがfalseか判定する。「login」フラグがfalseの場合はif文の中に入る。
-// if (/* ②の処理を書く */){
+ if (!$_SESSION['login']/* ②の処理を書く */){
 // 	//③SESSIONの「error2」に「ログインしてください」と設定する。
+$_SESSION['error2']="ログインしてください";
 // 	//④ログイン画面へ遷移する。
-// }
+header('location:login.php');
+ }
 
 $db_name="zaiko2020_yse";
 $host="localhost";
@@ -75,6 +77,8 @@ $query=$pdo->query($sql)
 				<button type="submit" id="btn1" formmethod="POST" name="decision" value="3" formaction="nyuka.php">入荷</button>
 
 				<button type="submit" id="btn1" formmethod="POST" name="decision" value="4" formaction="syukka.php">出荷</button>
+				<button type="submit" id="btn1" formmethod="POST" name="decision" value="5" formaction="new_product.php">新商品追加</button>
+				<button type="submit" id="btn1" formmethod="POST" name="decision" value="6" formaction="delete.php">商品削除</button>
 			</div>
 			<!-- 中央表示 -->
 			<div id="center">

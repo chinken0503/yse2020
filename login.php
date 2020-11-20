@@ -67,7 +67,7 @@ if (isset($_POST["decision"] )&& $_POST["decision"]==1) {
 
 // 	//⑬SESSIONの「error2」の値をエラーメッセージを入れる変数に設定する。
 		
-		 $_SESSION["error2"]="エラーメッセージ";
+		$errmsg = $_SESSION["error2"];
 // 	//⑭SESSIONの「error2」にnullを入れる。
 		$_SESSION["error2"] = null;
  }

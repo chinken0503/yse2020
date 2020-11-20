@@ -98,7 +98,7 @@ foreach($_POST['books'] as $book_id/* ⑪の処理を書く */){
  * ㉓POSTでこの画面のボタンの「add」に値が入ってるか確認する。
  * 値が入っている場合は中身に「ok」が設定されていることを確認する。
  */
-if(isset($_POST['add'])&& $_POST['add']=='ok'/* ㉓の処理を書く */){
+if(/* ㉓の処理を書く */isset($_POST['add'])&& $_POST['add']=='ok'){
 	//㉔書籍数をカウントするための変数を宣言し、値を0で初期化する。
 	$index=0;
 	//㉕POSTの「books」から値を取得し、変数に設定する。
@@ -111,6 +111,7 @@ if(isset($_POST['add'])&& $_POST['add']=='ok'/* ㉓の処理を書く */){
 		//㉘「updateByid」関数を呼び出す。その際に引数に㉕の処理で取得した値と⑧のDBの接続情報と㉗で計算した値を渡す。
 		updateByid($book_id,$pdo,$total_stock);
 		//㉙ ㉔で宣言した変数をインクリメントで値を1増やす。
+		updateByid($book_id,$pdo,$total_stock);
 		$index++;
 	}
 
